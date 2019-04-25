@@ -2,12 +2,12 @@
 
     private $_db;
 
-	public function __construct($db) {
+    public function __construct($db) {
         $this->_db = $db;
 
-	}
-			
-	public function run() {
+    }
+
+    public function run() {
         # Question Table that will be browsed in the view
         $tabquestions = '';
         # Search Keyword
@@ -21,10 +21,10 @@
             # Sélection de tous les livres sous forme de tableau
             $tabquestions = $this->_db->select_questions();
         }
-		
-		# Un contrôleur se termine en écrivant une vue
-		require_once(CHEMIN_VUES . 'Home.php');
-	}
-	
+
+        # Un contrôleur se termine en écrivant une vue
+        require_once(CHEMIN_VUES . 'Home.php');
+    }
+
 }
 ?>

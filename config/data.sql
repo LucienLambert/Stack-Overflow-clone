@@ -11,7 +11,7 @@ INSERT INTO `members` (`id_member`, `name`, `last_name`, `email`, `state`, `is_a
 (2, 'Claudy', 'Bougna', 'claudy.bougna@student.vinci.be', 'a', 0, 'groupe14'),
 (3, 'admin1name', 'admin1lastname', 'admin1@gmail.com', 'a', 1, 'groupe14');
 
-INSERT INTO `questions` (`id_question`,`title`,`subject`,  `id_category`, `owner`, `creation_date`, `state`, `good_answer`) VALUES
+INSERT INTO `questions` (`id_question`, `title`, `subject`, `id_category`, `owner`, `creation_date`, `state`, `good_answer`) VALUES
 (1, 'What exactly is O(log n)?','what exactly is O(log n)? For example, what does it mean to say that the height of a complete binary tree is O(log n)?',  2, 1, '2019-03-28', 'O', NULL),
 (2, 'The Cost of insertion algorithm', 'What is the cost of insertion algorithm?', 1, 2, '2019-03-28', 'O', NULL),
 (3, 'Difference betweenn and  javascript ', 'What is the main difference between java and javascript?', 3, 2, '2019-03-28', 'O', NULL),
