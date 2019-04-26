@@ -34,6 +34,10 @@
 	$action = (isset($_GET['action'])) ? $_GET['action'] : 'default';
 	# Quelle action est demandée dans l'URL ?
 	switch($action) {
+        case 'signup':
+            require_once('controllers/SignupController.php');
+            $controller = new SignupController($db);
+            break;
         case 'categories':
 			require_once(CHEMIN_CONTROLEURS . 'CategoryController.php');
 			$controller = new CategoryController($db);
@@ -73,8 +77,7 @@
 	}
 	# Exécution du contrôleur correspondant à l'action demandée
 	$controller->run();
-	
-		# Ecrire ici le footer du site de toutes pages HTML
-	require_once(CHEMIN_VUES . 'footer.php');
 
+    # Ecrire ici le footer du site de toutes pages HTML
+	require_once(CHEMIN_VUES . 'footer.php');
 ?>

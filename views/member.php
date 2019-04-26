@@ -39,6 +39,4 @@
             <p><input type="submit" name="form_add" value="Post Your Question"></p>
         </form>
     </div>
-
-
 </section>

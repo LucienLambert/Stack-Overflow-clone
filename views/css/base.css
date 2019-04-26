@@ -20,11 +20,12 @@
     border-collapse: collapse;
     background-color: #DCDCDC;
     text-align: center;
+    margin-top: auto;
     margin-left: auto;
     margin-right: auto;
     width: 500px;
     border-radius: 15px;
-    box-shadow: 3px 3px 9px orange;;
+    box-shadow: 3px 3px 9px orange;
 
 }
 
@@ -56,6 +57,7 @@
     border-collapse: collapse;
     background-color: #DCDCDC;
     text-align: center;
+    margin-top: auto;
     margin-left: auto;
     margin-right: auto;
     width: 500px;
@@ -69,6 +71,7 @@
     border-collapse: collapse;
     background-color: #DCDCDC;
     text-align: center;
+    margin-top: auto;
     margin-left: auto;
     margin-right: auto;
     width: 500px;
@@ -137,6 +140,7 @@ header{
     background-color: white;
     position: absolute;
     top: 0; left: 0; right: 0;
+    margin: auto;
     font-size: x-small;
     text-align: center;
     color: #000000;

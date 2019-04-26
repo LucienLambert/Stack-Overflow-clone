@@ -8,8 +8,7 @@ class QuestionController {
 	}
 			
 	public function run() {
-		
-		        # Notification that will be displayed in the view
+	    # Notification that will be displayed in the view
 		$notification = '';
 		# Question Table that will be browsed in the view
 		$tabquestions = '';
