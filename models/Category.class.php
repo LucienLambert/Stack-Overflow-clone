@@ -16,4 +16,12 @@
         return $this->_id_category;
     }
 
+    public function html_name(){
+        return htmlspecialchars($this->_name);
+    }
+
+    public function html_id_category(){
+        return htmlspecialchars($this->_id_category);
+    }
+
 } ?>

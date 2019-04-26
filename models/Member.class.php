@@ -49,4 +49,20 @@
         return $this->_password;
     }
 
+    public function html_name() {
+        return htmlspecialchars($this->_name);
+    }
+
+    public function html_last_name() {
+        return htmlspecialchars($this->_last_name);
+    }
+
+    public function html_password() {
+        return htmlspecialchars($this->_password);
+    }
+
+    public function html_email(){
+        return htmlspecialchars($this->_email);
+    }
+
 } ?>

@@ -4,7 +4,7 @@
         Login to ClassNotFound
     </h1>
     <p>if you want have access at more options, you need to login. if you don't have the account, please sign up before.
-    <a href="index.php?action=signup.php"> cliquez ici.</a></p>
+    <a href="index.php?action=signup">> cliquez ici.</a></p>
     <section div id="contenu">
 			<h2>Login from member Zone</h2>
 			<div id="notification"><?php echo $notification; ?></div>

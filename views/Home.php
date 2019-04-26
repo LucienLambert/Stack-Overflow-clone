@@ -1,10 +1,8 @@
 ﻿<div class="menu-navigation">
     <nav>
         <a id="button" href="index.php?action=login">Log In</a>
-        <a id="button" href="index.php?action=logout">Log Out</a>
+        <!-- <a id="button" href="index.php?action=logout">Log Out</a> -->
         <a id="button" href="index.php?action=signup">Sign Up</a>
-        <input id="search" type="text" placeholder="Search" aria-label="Search">
-        <button id="button" type="submit">Search</button>
     </nav>
 </div>
 
@@ -12,6 +10,7 @@
     <li><a class="textMenu" href="index.php?action=question">Questions</a></li>
     <li><a class="textMenu" href="index.php?action=categories">Categories</a></li>
     <li><a class="textMenu" href="index.php?action=member">Members</a></li>
+    <li><a class="textMenu" href="index.php?action=listeMember">Liste Members</a></li>
 </ul>
 
 

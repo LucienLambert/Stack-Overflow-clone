@@ -109,6 +109,27 @@
         return new Member($row->id_member, $row->name, $row->last_name, $row->email, $row->state, $row->is_admin,$row->password);
     }
 
+
+    public function insert_member($name, $last_name, $email, $password){
+        $pass_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $query = 'INSERT INTO members (name, last_name, email,  password) VALUES (:name, :last_name, :email, :password)';
+        $ps = $this->_db->prepare($query);
+        $ps->bindValue(':name',$name);
+        $ps->bindValue(':email',$email);
+        $ps->bindValue(':last_name',$last_name);
+        $ps->bindValue(':password',$password);
+
+        return $ps->execute();
+    }
+
+    #Fonction qui exécute un INSERT dans la table categorie.
+    public function insert_categories($name){
+        $query = 'INSERT INTO categories (name) values (:name)';
+        $ps = $this->_db->prepare($query);
+        $ps->bindValue(':name',$name);
+        $ps->execute();
+    }
+
     public function select_categories() {
         $query = 'SELECT * FROM categories ORDER BY id_category DESC';
         $ps = $this->_db->query($query);
@@ -126,6 +147,19 @@
         $ps->bindValue(':password', $password);
         $ps->execute();
         return $ps->rowcount() == 1;
+    }
+
+    public function getAllUser(){
+        $query = 'SELECT members.* FROM member ';
+
+        $ps = $this->_db->prepare($query);
+        $ps->execute();
+        $user=array();
+        while($row=$ps->fetch()){
+            $user[]= new Profile($row->user_id, $row->name, $row->last_name, $row->email, $row->photo, $row->is_active, $row->is_admin );
+        }
+        return $user;
+
     }
 
 } ?>
