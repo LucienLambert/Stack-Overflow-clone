@@ -23,6 +23,7 @@ class MemberController{
         $notification = '';
         $vueupdate = false; # La vue partielle de mise à jour n'est pas à afficher;
         $vueanswers = false;
+        $question = null;
 
         # Insertion des données d'un livre en provenance du formulaire form_ajout
         if (!empty($_POST['form_add'])) {
@@ -62,6 +63,7 @@ class MemberController{
                 # Une seule question est à mettre à jour spécifié par la variable $_POST['question']
                 # --------------------------------------------------------------------------
                 # Sélectionner les informations de la question correspondante
+                $vueanswers = false;
                 $question = $this->_db->select_question($_POST['question']);
                 $vueupdate = true; # La vue partielle de mise à jour est à afficher;
             } else {
@@ -69,9 +71,12 @@ class MemberController{
             }
         } elseif(!empty($_POST['form_see_answers'])) {
             if (!empty($_POST['idquestion'])) {
+                $vueupdate = false;
                 $question = $this->_db->select_question($_POST['idquestion']);
                 $tabanswers  = $this->_db->select_answers($_POST['idquestion']);
                 $vueanswers = true;
+            } else {
+                $notification = 'No question to see';
             }
         }
 
@@ -84,8 +89,7 @@ class MemberController{
         require_once(CHEMIN_VUES . 'member.php');
         if ($vueupdate) {
             require_once(CHEMIN_VUES . 'member.update.php');
-        }
-        if ($vueanswers) {
+        } elseif ($vueanswers) {
             require_once(CHEMIN_VUES . 'answer.php');
         }
     }

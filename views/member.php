@@ -14,18 +14,17 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($tabquestions as $i => $question) { ?>
+            <?php for ($i = 0; $i < count($tabquestions); $i++) { ?>
                 <tr>
                     <td><span class="html"><?php echo $tabquestions[$i]->html_title(); ?></span></td>
                     <td><?php echo  $tabquestions[$i]->html_subject(); ?></td>
-                    <td><input type="radio" name="question" value="<?php echo $tabquestions[$i]->html_id_question(); ?>" <?php echo (isset($question) && $tabquestions[$i]->id_question() == $question->id_question()) ? 'checked' : ''; ?> /></td>
-                    <td><input type="radio" name="idquestion" value="<?php echo $tabquestions[$i]->html_id_question(); ?>" <?php echo (isset($question) && $tabquestions[$i]->id_question() == $question->id_question()) ? 'checked' : ''; ?> /></td>
+                    <td><input type="radio" name="question" value="<?php echo $tabquestions[$i]->html_id_question(); ?>" <?php echo (isset($question) && $tabquestions[$i]->html_id_question() == $question->html_id_question()) ? 'checked' : ''; ?> /></td>
+                    <td><input type="radio" name="idquestion" value="<?php echo $tabquestions[$i]->html_id_question(); ?>" <?php echo (isset($question) && $tabquestions[$i]->html_id_question() == $question->html_id_question()) ? 'checked' : ''; ?> /></td>
                 </tr>
             <?php } ?>
             </tbody>
         </table>
     </form>
-    <h3>Post Your Question Here</h3>
     <div class="form">
         <form action="index.php?action=question" method="post">
             <p>Title of question :	<input type="text" name="title" /></p>
