@@ -1,5 +1,0 @@
-
-AuthUserFile C:\wamp64\www\groupe14\secured\.htpasswd
-AuthName "Identification obligatoire"
-AuthType Basic
-require valid-user
