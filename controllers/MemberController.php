@@ -26,7 +26,7 @@ class MemberController{
         $question = null;
 
         # Insertion des données d'un livre en provenance du formulaire form_ajout
-        if (!empty($_POST['form_add'])) {
+        if (!empty($_POST['form_add_question'])) {
             if (empty($_POST['title']) && empty($_POST['subject'])) {
                 $notification = 'Please enter a title and a subject';
             } elseif (empty($_POST['title'])) {
@@ -77,6 +77,14 @@ class MemberController{
                 $vueanswers = true;
             } else {
                 $notification = 'No question to see';
+            }
+        } elseif (!empty($_POST['form_add_answer'])) {
+            if (!empty($_POST['subject'])) {
+                if ($this->_db->insert_answer($_POST['subject'], $_POST['idquestion'], $member->id_member())) {
+                    $notification = 'Adding well done';
+                } else {
+                    $notification = 'Error adding';
+                }
             }
         }
 

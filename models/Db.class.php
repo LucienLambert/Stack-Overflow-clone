@@ -59,15 +59,14 @@
         return $ps->execute();
     }
 
-    public function insert_answer($subject, $id_question, $id_member){
-        $query ='INSERT INTO answers (id_answer,subject, id_question, id_member) VALUES(DEFAULT,:subject, :id_question, id_member)';
+    public function insert_answer($subject, $id_question, $id_member) {
+        $query ='INSERT INTO answers (id_answer, subject, id_question, id_member) VALUES(DEFAULT, :subject, :id_question, :id_member)';
+        var_dump($query, $subject, $id_question, $id_member);
         $ps = $this->_db->prepare($query);
-        $ps->bindValue(':subject',$subject);
+        $ps->bindValue(':subject', $subject);
         $ps->bindValue(':id_question', $id_question);
         $ps->bindValue(':id_member', $id_member);
         return $ps->execute();
-
-
     }
 
     public function select_question($id_question) {

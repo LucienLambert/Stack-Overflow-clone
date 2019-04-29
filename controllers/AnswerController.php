@@ -7,14 +7,13 @@ class AnswerController{
         $this->_db = $db;
     }
 
-    public function run(){
+    public function run() {
         # Notification that will be displayed in the view
         $notification = '';
-        # Question Table that will be browsed in the view
-        $tabquestions = '';
 
-        $tabquestions  = $this->_db->select_answers($_POST['idquestion']);
+        $member = unserialize($_SESSION['member']);
 
+        var_dump($_POST);
 
 
         # A controller ends by writing a view
