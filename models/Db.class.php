@@ -61,7 +61,7 @@
 
     public function insert_answer($subject, $id_question, $id_member) {
         $query ='INSERT INTO answers (id_answer, subject, id_question, id_member) VALUES(DEFAULT, :subject, :id_question, :id_member)';
-        var_dump($query, $subject, $id_question, $id_member);
+       # var_dump($query, $subject, $id_question, $id_member);
         $ps = $this->_db->prepare($query);
         $ps->bindValue(':subject', $subject);
         $ps->bindValue(':id_question', $id_question);

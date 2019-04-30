@@ -26,6 +26,7 @@
         </table>
     </form>
     <div class="form">
+        <h3> Ask your question Here </h3>
         <form action="index.php?action=question" method="post">
             <p>Title of question :	<input type="text" name="title" /></p>
             <p>Subject : <input type="text" name="subject" /></p>
@@ -35,7 +36,7 @@
                     <option value="<?php echo $category->id_category(); ?>"><?php echo $category->name(); ?></option>
                 <?php } ?>
             </select>
-            <p><input type="submit" name="form_add" value="Post Your Question"></p>
+            <p><input type="submit" name="form_add" value="Ask Your Question"></p>
         </form>
     </div>
 </section>

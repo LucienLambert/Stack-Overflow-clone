@@ -1,6 +1,6 @@
 <section id="contenu">
     <h2>Answers</h2>
-    <p>Welcome to the answers.</p>
+    <p>Welcome to the answers page.</p>
 
     <p>Question :</p>
     <p><?= $question->title() . ' : ' . $question->subject(); ?></p>
