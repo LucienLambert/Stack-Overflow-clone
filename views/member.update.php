@@ -1,4 +1,5 @@
 <div id="content">
+    <h2>Update your Question here</h2>
     <form action="?action=member" method="post">
         <table id="tableBalises">
             <thead>

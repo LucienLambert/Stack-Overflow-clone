@@ -3,7 +3,7 @@
     <p>Welcome to the answers page.</p>
 
     <p>Question :</p>
-    <p><?= $question->title() . ' : ' . $question->subject(); ?></p>
+    <p><?php echo $question->title() . ' : ' . $question->subject(); ?></p>
 
     <table id="tableBalises">
         <thead>
@@ -21,7 +21,7 @@
     </table>
     <div class="form">
         <form action="index.php?action=member" method="post">
-            <p>Subject : <input type="text" name="subject" /></p>
+            <p> Subject : </br><textarea rows="25"  cols="80" name="subject">Enter your answer here</textarea></p>
             <input type="hidden" value="<?php echo $question->html_id_question(); ?>" name="idquestion">
             <p><input type="submit" name="form_add_answer" value="Post Your Answer"></p>
         </form>

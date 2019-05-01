@@ -28,14 +28,14 @@
     <div class="form">
         <h3> Ask your question Here </h3>
         <form action="index.php?action=question" method="post">
-            <p>Title of question :	<input type="text" name="title" /></p>
-            <p>Subject : <input type="text" name="subject" /></p>
             <label for="id_category">Choose a category :</label>
             <select id="id_category" name="id_category">
                 <?php foreach ($tabCategories as $i => $category) { ?>
                     <option value="<?php echo $category->id_category(); ?>"><?php echo $category->name(); ?></option>
                 <?php } ?>
             </select>
+            <p>Title of question :	<input type="text" name="title" /></p>
+            <p>Subject : </br><textarea   rows="25" cols="80"   name="subject"> Develop your question here</textarea></p>
             <p><input type="submit" name="form_add" value="Ask Your Question"></p>
         </form>
     </div>
