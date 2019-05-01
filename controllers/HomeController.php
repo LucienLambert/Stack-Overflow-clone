@@ -23,7 +23,7 @@
         }
 
         # Un contrôleur se termine en écrivant une vue
-        require_once(CHEMIN_VUES . 'Home.php');
+        require_once(CHEMIN_VUES . 'home.php');
     }
 
 }

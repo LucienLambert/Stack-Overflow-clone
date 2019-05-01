@@ -5,13 +5,19 @@
     private $_creation_date;
     private $_id_question;
     private $_id_member;
+    private $_nb_votes;
 
-    public function __construct($id_answer, $subject, $creation_date, $id_question, $id_member) {
+    public function __construct($id_answer, $subject, $creation_date, $id_question, $id_member, $nb_votes) {
         $this->_id_answer = $id_answer;
         $this->_subject = $subject;
         $this->_creation_date = $creation_date;
         $this->_id_question = $id_question;
         $this->_id_member = $id_member;
+        $this->_nb_votes = $nb_votes;
+    }
+
+    public function nb_votes() {
+        return $this->_nb_votes;
     }
 
     public function id_answer() {

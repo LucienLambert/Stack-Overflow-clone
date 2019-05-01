@@ -40,7 +40,7 @@
         $ps->execute();
         $table = array();
         while ($row = $ps->fetch()) {
-            $table[] = new Question($row->id_question, $row->title, $row->subject, $row->creation_date, $row->id_category, $row->owner, $row->state, $row->good_answer);
+            $table[] = new Question($row->id_question, $row->title, $row->subject, $row->creation_date, $row->id_category, $this->select_member_by_id($row->owner), $row->state, $row->good_answer);
         }
         # For debug : display of table to return
         # var_dump($table);
@@ -75,7 +75,16 @@
         $ps->bindValue(':id_question', $id_question);
         $ps->execute();
         $row = $ps->fetch();
-        return new Question($row->id_question, $row->title, $row->subject, $row->creation_date, $row->id_category, $row->owner, $row->state, $row->good_answer);
+        return new Question($row->id_question, $row->title, $row->subject, $row->creation_date, $row->id_category, $this->select_member_by_id($row->owner), $row->state, $row->good_answer);
+    }
+
+    public function select_member_by_id($id_member) {
+        $query = 'SELECT * FROM members WHERE id_member = :id_member';
+        $ps = $this->_db->prepare($query);
+        $ps->bindValue(':id_member', $id_member);
+        $ps->execute();
+        $row = $ps->fetch();
+        return new Member($row->id_member, $row->name, $row->last_name, $row->email, $row->state, $row->is_admin, NULL);
     }
 
     public function select_answers($id_question) {
@@ -85,7 +94,7 @@
         $ps->execute();
         $table = array();
         while ($row = $ps->fetch()) {
-            $table[] = new Answer($row->id_answer, $row->subject, $row->creation_date, $row->id_question, $row->id_member);
+            $table[] = new Answer($row->id_answer, $row->subject, $row->creation_date, $row->id_question, $this->select_member_by_id($row->id_member), $row->nb_votes);
         }
         return $table;
     }
@@ -105,9 +114,8 @@
         $ps->bindValue(':email', $login);
         $ps->execute();
         $row = $ps->fetch();
-        return new Member($row->id_member, $row->name, $row->last_name, $row->email, $row->state, $row->is_admin,$row->password);
+        return new Member($row->id_member, $row->name, $row->last_name, $row->email, $row->state, $row->is_admin, NULL);
     }
-
 
     public function insert_member($name, $last_name, $email, $password){
         $pass_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -123,7 +131,7 @@
 
     #Fonction qui exécute un INSERT dans la table categorie.
     public function insert_categories($name){
-        $query = 'INSERT INTO categories (name) values (:name)';
+        $query = 'INSERT INTO categories (name) VALUES (:name)';
         $ps = $this->_db->prepare($query);
         $ps->bindValue(':name',$name);
         $ps->execute();
@@ -139,6 +147,43 @@
         return $table;
     }
 
+    public function select_votes_by_answer($id_answer) {
+        $query = 'SELECT * FROM votes WHERE id_answer = :id_answer ORDER BY value';
+        $ps = $this->_db->prepare($query);
+        $ps->bindValue(':id_answer', $id_answer);
+        $ps->execute();
+        $table = array();
+        while($row = $ps->fetch()) {
+            $table[] = new Vote($row->id_member, $row->id_answer, $row->value);
+        }
+        return $table;
+    }
+
+    public function insert_vote($id_member, $id_answer, $value) {
+        $query = 'INSERT INTO votes (id_member, id_answer, value) VALUES (:id_member, :id_answer, :value)';
+        $ps = $this->_db->prepare($query);
+        $ps->bindValue(':id_member', $id_member);
+        $ps->bindValue(':id_answer', $id_answer);
+        $ps->bindValue(':value', $value);
+        $ps->execute();
+    }
+
+    public function update_answer($nb_votes, $vote, $id_answer) {
+        $query = 'UPDATE answers SET nb_votes = :nb_votes WHERE id_answer = :id_answer';
+        $ps = $this->_db->prepare($query);
+        $ps->bindValue(':nb_votes', $nb_votes + intval($vote), PDO::PARAM_INT);
+        $ps->bindValue(':id_answer', $id_answer);
+        $ps->execute();
+    }
+
+    public function update_state_question($state, $id_question) {
+        $query = 'UPDATE questions SET state = :state WHERE id_question = :id_question';
+        $ps = $this->_db->prepare($query);
+        $ps->bindValue(':state', $state);
+        $ps->bindValue(':id_question', $id_question);
+        $ps->execute();
+    }
+
     public function is_valid_member($login, $password) {
         $query = 'SELECT * FROM members WHERE email = :email AND password = :password';
         $ps = $this->_db->prepare($query);
@@ -146,19 +191,6 @@
         $ps->bindValue(':password', $password);
         $ps->execute();
         return $ps->rowcount() == 1;
-    }
-
-    public function getAllUser(){
-        $query = 'SELECT members.* FROM member ';
-
-        $ps = $this->_db->prepare($query);
-        $ps->execute();
-        $user=array();
-        while($row=$ps->fetch()){
-            $user[]= new Profile($row->user_id, $row->name, $row->last_name, $row->email, $row->photo, $row->is_active, $row->is_admin );
-        }
-        return $user;
-
     }
 
 } ?>

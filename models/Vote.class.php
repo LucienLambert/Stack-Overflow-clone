@@ -4,11 +4,10 @@
     private $_id_answer;
     private $_id_member;
 
-    public function __construct($id_member,$id_answer, $value) {
-        $this->_value = $value;
-        $this->_id_answer = $id_answer;
+    public function __construct($id_member, $id_answer, $value) {
         $this->_id_member = $id_member;
-
+        $this->_id_answer = $id_answer;
+        $this->_value = $value;
     }
 
     public function value() {

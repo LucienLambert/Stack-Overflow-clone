@@ -23,7 +23,7 @@ class MemberController{
         $notification = '';
         $vueupdate = false; # La vue partielle de mise à jour n'est pas à afficher;
         $vueanswers = false;
-        $question = null;
+        $selected_question = null;
 
         # Insertion des données d'un livre en provenance du formulaire form_ajout
         if (!empty($_POST['form_add_question'])) {
@@ -51,9 +51,10 @@ class MemberController{
             if (!empty($_POST['title']) && !empty($_POST['subject'])) {
                 $this->_db->update_question($_POST['idquestion'], $_POST['title'], $_POST['subject']);
                 $notification = 'Question updated successfully';
+                $vueupdate = false;
             } else {
                 $notification = 'Please enter a title and a subject';
-                $question = $this->_db->select_question($_POST['idquestion']);
+                $selected_question = $this->_db->select_question($_POST['idquestion']);
                 $vueupdate = true;
             }
         }
@@ -64,7 +65,7 @@ class MemberController{
                 # --------------------------------------------------------------------------
                 # Sélectionner les informations de la question correspondante
                 $vueanswers = false;
-                $question = $this->_db->select_question($_POST['question']);
+                $selected_question = $this->_db->select_question($_POST['question']);
                 $vueupdate = true; # La vue partielle de mise à jour est à afficher;
             } else {
                 $notification = 'No question to update';
@@ -72,7 +73,7 @@ class MemberController{
         } elseif(!empty($_POST['form_see_answers'])) {
             if (!empty($_POST['idquestion'])) {
                 $vueupdate = false;
-                $question = $this->_db->select_question($_POST['idquestion']);
+                $selected_question = $this->_db->select_question($_POST['idquestion']);
                 $tabanswers  = $this->_db->select_answers($_POST['idquestion']);
                 $vueanswers = true;
             } else {
@@ -80,12 +81,25 @@ class MemberController{
             }
         } elseif (!empty($_POST['form_add_answer'])) {
             if (!empty($_POST['subject'])) {
+                $vueupdate = false;
+                $selected_question = $this->_db->select_question($_POST['idquestion']);
+                $tabanswers  = $this->_db->select_answers($_POST['idquestion']);
                 if ($this->_db->insert_answer($_POST['subject'], $_POST['idquestion'], $member->id_member())) {
                     $notification = 'Adding well done';
                 } else {
                     $notification = 'Error adding';
                 }
+                $vueanswers = true;
             }
+        } elseif (!empty($_POST['up_down'])) {// s'il a voté
+            $vueupdate = false;
+            $this->_db->insert_vote($member->id_member(), $_POST['idanswer'], $_POST['up_down']);
+            $this->_db->update_answer($_POST['nb_votes'], $_POST['up_down'], $_POST['idanswer']);
+            $selected_question = $this->_db->select_question($_POST['idquestion']);
+            $tabanswers  = $this->_db->select_answers($_POST['idquestion']);
+            $vueanswers = true;
+        } elseif (!empty($_POST['form_change_state'])) {
+            $this->_db->update_state_question($_POST['state'], $_POST['idquestion']);
         }
 
         # Sélection de toutes les questions à afficher

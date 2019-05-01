@@ -19,7 +19,7 @@
     }
 
     public function full_name() {
-        return $this->_name . ' ' . $this->_last_name;
+        return htmlspecialchars($this->_name . ' ' . $this->_last_name);
     }
 
     public function id_member() {
