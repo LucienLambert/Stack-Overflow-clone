@@ -10,9 +10,9 @@
             </thead>
             <tbody>
             <tr>
-                <td><input type="text" name="title" value="<?php echo $question->html_title(); ?>" size="50"></td>
-                <td><input type="text" name="subject" value="<?php echo $question->html_subject(); ?>"></td>
-                <input type="hidden" name="idquestion" value="<?php echo $question->html_id_question(); ?>">
+                <td><input type="text" name="title" value="<?php echo $selected_question->html_title(); ?>" size="50"></td>
+                <td><input type="text" name="subject" value="<?php echo $selected_question->html_subject(); ?>"></td>
+                <input type="hidden" name="idquestion" value="<?php echo $selected_question->html_id_question(); ?>">
                 <td><input type="submit" name="form_save" value="Save"></td>
             </tr>
             </tbody>
