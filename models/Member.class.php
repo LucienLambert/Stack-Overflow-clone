@@ -22,6 +22,9 @@
         return htmlspecialchars($this->_name . ' ' . $this->_last_name);
     }
 
+    public function html_id_member() {
+        return htmlspecialchars($this->_id_member);
+    }
     public function id_member() {
         return $this->_id_member;
     }
