@@ -1,7 +1,6 @@
 ﻿<div class="menu-navigation">
     <nav>
-        <a id="button" href="index.php?action=login">Log In</a>
-        <!-- <a id="button" href="index.php?action=logout">Log Out</a> -->
+        <a id="button" href="index.php?action=<?= $actionloginmember; ?>"><?= $libelleloginmember; ?></a>
         <a id="button" href="index.php?action=signup">Sign Up</a>
     </nav>
 </div>
@@ -9,8 +8,8 @@
 <ul class="menuCategory">
     <li><a class="textMenu" href="index.php?action=question">Questions</a></li>
     <li><a class="textMenu" href="index.php?action=categories">Categories</a></li>
-    <li><a class="textMenu" href="index.php?action=member">Members</a></li>
-    <li><a class="textMenu" href="index.php?action=listeMember">Liste Members</a></li>
+    <!-- <li><a class="textMenu" href="index.php?action=member">Members</a></li>-->
+    <li><a class="textMenu" href="index.php?action=adminZone">Admin Zone</a></li>
 </ul>
 
 
@@ -24,13 +23,13 @@
 
 
 <section class="descAccueil">
-<table id="tableBalises">
-    <strong id="titreTopQuestion">TOP Questions</strong> :<br/>
+    <table id="tableBalises">
+        <strong id="titreTopQuestion">TOP Questions</strong> :<br/>
         <thead>
-          <tr>
+        <tr>
             <th>Title</th>
             <th>subject</th>
-         </tr>
+        </tr>
         </thead>
         <tbody>
         <?php foreach ($tabquestions as $i => $question) { ?>

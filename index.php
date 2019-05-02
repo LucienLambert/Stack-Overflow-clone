@@ -34,6 +34,14 @@
 	$action = (isset($_GET['action'])) ? $_GET['action'] : 'default';
 	# Quelle action est demandée dans l'URL ?
 	switch($action) {
+        case 'adminZone':
+            require_once(CHEMIN_CONTROLEURS . 'adminController.php');
+            $controller = new AdminController($db);
+            break;
+        case 'listeMember':
+            require_once(CHEMIN_CONTROLEURS . 'ListemembreController.php');
+            $controller = new ListemembreController($db);
+            break;
         case 'signup':
             require_once('controllers/SignupController.php');
             $controller = new SignupController($db);

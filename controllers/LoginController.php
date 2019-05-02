@@ -33,7 +33,7 @@ class LoginController{
                 $_SESSION['login'] = $member->full_name();
                 $_SESSION['member'] = serialize($member);
                 # Redirection HTTP pour demander la page admin
-                header("Location: index.php?action=member");
+                header("Location: index.php?action=home");
                 die();
             } else {
                 $notification = 'Vos données d\'authentification ne sont pas correctes.';

@@ -53,9 +53,9 @@
                     <option value="<?php echo $category->id_category(); ?>"><?php echo $category->name(); ?></option>
                 <?php } ?>
             </select>
-            <p>Title of question :	<input type="text" name="title" /></p>
+            <p>Title of question :</p>	<textarea   rows="3" cols="60"   name="title" ></textarea>
             <p>Subject :</p>
-            <textarea   rows="25" cols="80"   name="subject" placeholder="Develop your question here"></textarea>
+            <textarea   rows="25" cols="60"   name="subject" placeholder="Develop your question here"></textarea>
             <p><input type="submit" name="form_add" value="Ask Your Question"></p>
         </form>
     </div>

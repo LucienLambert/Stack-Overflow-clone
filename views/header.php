@@ -11,10 +11,5 @@
     <h1>
         A site's geek for the geeks made by geek.
     </h1>
-        <nav>
-            <ul>
-                <li><a href="index.php?action=<?= $actionloginmember; ?>"><?= $libelleloginmember; ?></a></li>					
-            </ul>
-        </nav>
 </header>
 
