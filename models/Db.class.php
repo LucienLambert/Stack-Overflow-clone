@@ -192,5 +192,16 @@
         $ps->execute();
         return $ps->rowcount() == 1;
     }
+    public function select_listemember(){
+        $query = 'SELECT members.* FROM members ';
+
+        $ps = $this->_db->prepare($query);
+        $ps->execute();
+        $user=array();
+        while($row=$ps->fetch()){
+            $user[]= new Member($row->id_member, $row->name, $row->last_name, $row->email, $row->state, $row->is_admin, $row->password);
+        }
+        return $user;
+    }
 
 } ?>

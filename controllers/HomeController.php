@@ -8,6 +8,15 @@
     }
 
     public function run() {
+
+        if (empty($_SESSION['authentifie'])) {
+            $actionloginmember = 'login';
+            $libelleloginmember = 'Login';
+        } else {
+            $actionloginmember = 'member';
+            $libelleloginmember = 'Member Zone';
+        }
+
         # Question Table that will be browsed in the view
         $tabquestions = '';
         # Search Keyword
@@ -18,12 +27,14 @@
             $tabquestions = $this->_db->select_questions($_POST['keyword']);
             $html_keyword = htmlspecialchars($_POST['keyword']); # Protection anti XSS à l'affichage
         } else {
-            # Sélection de tous les livres sous forme de tableau
+            # Sélection de tous les questions sous forme de tableau
             $tabquestions = $this->_db->select_questions();
         }
 
         # Un contrôleur se termine en écrivant une vue
-        require_once(CHEMIN_VUES . 'home.php');
+        require_once(CHEMIN_VUES . 'Home.php');
+
+
     }
 
 }

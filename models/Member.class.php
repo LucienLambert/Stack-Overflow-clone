@@ -65,4 +65,12 @@
         return htmlspecialchars($this->_email);
     }
 
+    public function html_state() {
+        return htmlspecialchars($this->_state);
+    }
+
+    public function html_is_admin(){
+        return htmlspecialchars($this->_is_admin);
+    }
+
 } ?>

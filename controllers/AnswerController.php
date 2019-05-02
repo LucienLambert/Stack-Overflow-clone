@@ -11,6 +11,7 @@ class AnswerController{
         # Notification that will be displayed in the view
         $notification = '';
 
+
         $member = unserialize($_SESSION['member']);
 
         var_dump($_POST);
