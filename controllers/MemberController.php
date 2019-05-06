@@ -33,13 +33,11 @@ class MemberController{
                 $notification = 'Please enter a title';
             } elseif (empty($_POST['subject'])) {
                 $notification = 'Please enter a subject';
-            } elseif (empty($_POST['subject'])) {
-                $notification = 'Please enter a subject';
             } else {
                 if ($this->_db->insert_question($_POST['title'], $_POST['subject'], $_POST['id_category'], $member->id_member(), 'O')) {
-                    $notification = 'Adding well done';
+                    $notification = 'Question added with success';
                 } else {
-                    $notification = 'Error adding';
+                    $notification = 'Error adding question';
                 }
             }
         }
@@ -85,19 +83,21 @@ class MemberController{
                 $selected_question = $this->_db->select_question($_POST['idquestion']);
                 $tabanswers  = $this->_db->select_answers($_POST['idquestion']);
                 if ($this->_db->insert_answer($_POST['subject'], $_POST['idquestion'], $member->id_member())) {
-                    $notification = 'Adding well done';
+                    $notification = 'answer added with success';
                 } else {
-                    $notification = 'Error adding';
+                    $notification = 'Error adding answer';
                 }
                 $vueanswers = true;
             }
-        } elseif (!empty($_POST['up_down'])) {// s'il a voté
+        } elseif (!empty($_POST['vote'])) {// s'il a voté
             $vueupdate = false;
-            $this->_db->insert_vote($member->id_member(), $_POST['idanswer'], $_POST['up_down']);
-            $this->_db->update_answer($_POST['nb_votes'], $_POST['up_down'], $_POST['idanswer']);
+            $this->_db->insert_vote($member->id_member(), $_POST['idanswer'], $_POST['vote']);
+            $this->_db->update_answer($_POST['nb_votes'], $_POST['vote'], $_POST['idanswer']);
             $selected_question = $this->_db->select_question($_POST['idquestion']);
             $tabanswers  = $this->_db->select_answers($_POST['idquestion']);
             $vueanswers = true;
+            $notification = 'thank you for your vote';
+
         } elseif (!empty($_POST['form_change_state'])) {
             $this->_db->update_state_question($_POST['state'], $_POST['idquestion']);
         }

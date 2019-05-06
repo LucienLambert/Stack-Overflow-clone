@@ -18,10 +18,6 @@
         $this->_password = $password;
     }
 
-    public function full_name() {
-        return htmlspecialchars($this->_name . ' ' . $this->_last_name);
-    }
-
     public function id_member() {
         return $this->_id_member;
     }
@@ -75,6 +71,14 @@
 
     public function html_is_admin(){
         return htmlspecialchars($this->_is_admin);
+    }
+
+    public function full_name() {
+        return htmlspecialchars($this->_name . ' ' . $this->_last_name);
+    }
+
+    public function html_id_member() {
+        return htmlspecialchars($this->_id_member);
     }
 
 } ?>

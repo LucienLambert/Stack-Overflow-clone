@@ -45,8 +45,8 @@
         </table>
     </form>
     <div class="form">
-        <h3> Ask your question Here </h3>
-        <form action="index.php?action=question" method="post">
+        <h1  id="invitation"> Ask your question Here </h1>
+        <form action="index.php?action=member" method="post">
             <label for="id_category">Choose a category :</label>
             <select id="id_category" name="id_category">
                 <?php foreach ($tabCategories as $i => $category) { ?>
@@ -56,7 +56,7 @@
             <p>Title of question :</p>	<textarea   rows="3" cols="60"   name="title" ></textarea>
             <p>Subject :</p>
             <textarea   rows="25" cols="60"   name="subject" placeholder="Develop your question here"></textarea>
-            <p><input type="submit" name="form_add" value="Ask Your Question"></p>
+            <p><input type="submit" name="form_add_question" value="Ask Your Question"></p>
         </form>
     </div>
     <?php } ?>

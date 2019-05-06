@@ -209,10 +209,10 @@
         $ps->execute();
     }
 
-    public function update_answer($nb_votes, $vote, $id_answer) {
+    public function update_answer($nb_votes,$_vote, $id_answer) {
         $query = 'UPDATE answers SET nb_votes = :nb_votes WHERE id_answer = :id_answer';
         $ps = $this->_db->prepare($query);
-        $ps->bindValue(':nb_votes', $nb_votes + intval($vote), PDO::PARAM_INT);
+        $ps->bindValue(':nb_votes', $nb_votes + intval($_vote), PDO::PARAM_INT);
         $ps->bindValue(':id_answer', $id_answer);
         $ps->execute();
     }
