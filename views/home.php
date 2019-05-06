@@ -1,20 +1,15 @@
 ﻿<div class="menu-navigation">
     <nav>
         <a id="button" href="index.php?action=<?= $actionloginmember; ?>"><?= $libelleloginmember; ?></a>
+        <a id="button" href="index.php?action=adminZone">Admin Zone</a>
+        <a id="button" href="index.php?action=question"> Questions </a>
         <a id="button" href="index.php?action=signup">Sign Up</a>
     </nav>
 </div>
 
-<ul class="menuCategory">
-    <li><a class="textMenu" href="index.php?action=question">Questions</a></li>
-    <li><a class="textMenu" href="index.php?action=categories">Categories</a></li>
-    <!-- <li><a class="textMenu" href="index.php?action=member">Members</a></li>-->
-    <li><a class="textMenu" href="index.php?action=adminZone">Admin Zone</a></li>
-</ul>
-
-
 <section class="descAccueil">
     <h2>Welcome</h2>
+    <p><?php $notification ?></p>
     <p> if you have questions about programming, you are in the right place. site is a community that helps one another. you have a problem posted your question and the community will help you if it can.
         you answer a question, answer it and help the community to your turn.</p>
     <p>ClassNotFound</p>

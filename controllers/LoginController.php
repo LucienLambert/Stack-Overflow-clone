@@ -32,6 +32,13 @@ class LoginController{
                 $_SESSION['authentifie'] = 'autorise';
                 $_SESSION['login'] = $member->full_name();
                 $_SESSION['member'] = serialize($member);
+                $_SESSION['admin'] = $member->is_admin();
+                $_SESSION['state'] = $member->state();
+                if($_SESSION['state'] == 's'){
+                    $notification = 'bye bye';
+                    header("Location: index.php?action=logout");
+                    die();
+                }
                 # Redirection HTTP pour demander la page admin
                 header("Location: index.php?action=home");
                 die();

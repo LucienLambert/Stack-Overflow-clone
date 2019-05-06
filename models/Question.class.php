@@ -53,6 +53,10 @@
         return $this->_state;
     }
 
+    public function html_id_category() {
+        return htmlspecialchars($this->_id_category);
+    }
+
     public function html_title() {
         return htmlspecialchars($this->_title);
     }

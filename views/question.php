@@ -3,13 +3,14 @@
 <section id="contenu">
     <div class="formulaire">
         <form action="index.php?action=question" method="post">
-            <p>Search Box : <input type="text" name="keyword" value="<?php echo $html_keyword ?>"/><input type="submit" name="form_research" value="Research"></p>
+            <p>Search Box : <input id="search" type="text" name="keyword" value="<?php echo $html_keyword ?>"/><input id="button" type="submit" name="form_research" value="Research"></p>
         </form>
     </div>
         <form action="?action=question" method="post">
             <table id="tableBalises">
                 <thead>
                 <tr>
+                    <th>Category</th>
                     <th>Title</th>
                     <th>Subject</th>
                     <th>Owner</th>
@@ -20,7 +21,8 @@
                 <tbody>
                 <?php foreach ($tabquestions as $i => $question) { ?>
                     <tr>
-                        <td><span class="html"><?= $question->html_title(); ?></span></td>
+                        <td><?php echo $question->id_category(); ?></td>
+                        <td><?php echo $question->html_title(); ?></td>
                         <td><?php echo $question->html_subject(); ?></td>
                         <td><?php echo $question->owner()->full_name(); ?></td>
                         <td><?php echo $question->creation_date(); ?></td>
