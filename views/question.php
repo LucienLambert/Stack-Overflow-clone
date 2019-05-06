@@ -20,7 +20,7 @@
                 <tbody>
                 <?php foreach ($tabquestions as $i => $question) { ?>
                     <tr>
-                        <td><span class="html"><?= $question->html_title(); ?></span></td>
+                        <td><span class="title"><?php echo $question->html_title(); ?></span></td>
                         <td><?php echo $question->html_subject(); ?></td>
                         <td><?php echo $question->owner()->full_name(); ?></td>
                         <td><?php echo $question->creation_date(); ?></td>

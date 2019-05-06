@@ -1,5 +1,5 @@
 <div id="content">
-    <h2>Update your Question here</h2>
+    <h1 id="invitation">Update your Question here</h1>
     <form action="?action=member" method="post">
         <table id="tableBalises">
             <thead>
@@ -18,4 +18,4 @@
             </tbody>
         </table>
     </form>
-</div>
+    </div>

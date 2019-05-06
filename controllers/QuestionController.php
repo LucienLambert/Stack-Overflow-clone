@@ -12,7 +12,7 @@ class QuestionController {
 		$notification = '';
 		# Question Table that will be browsed in the view
 		$tabquestions = array();
-        $selected_question = null;
+       $selected_question = null;
 		# Search Keyword
 		$html_keyword = '';
         $vueanswers = true;
@@ -26,10 +26,18 @@ class QuestionController {
 			$tabquestions = $this->_db->select_questions();
 		}
 
-        if (!empty($_POST['form_see_answers'])) {
-            $selected_question = $this->_db->select_question($_POST['idquestion']);
-            $tabanswers = $this->_db->select_answers($_POST['idquestion']);
-            $vueanswers = true;
+        if(!empty($_POST['form_see_answers'])) {
+            if (!empty($_POST['idquestion'])) {
+                $vueupdate = false;
+                $selected_question = $this->_db->select_question($_POST['idquestion']);
+                $tabanswers = $this->_db->select_answers($_POST['idquestion']);
+                $vueanswers = true;
+            } else {
+                $notification = 'No question to see';
+            }
+           require_once(CHEMIN_VUES . 'question.php');
+            require_once(CHEMIN_VUES . 'answer.php');
+
         }
 
 		# Ecrire ici la vue
@@ -37,9 +45,7 @@ class QuestionController {
 		# $notification contient un message destiné à l'utilisateur
 		require_once(CHEMIN_VUES . 'question.php');
 
-        if ($vueanswers) {
-            require_once(CHEMIN_VUES . 'answer.php');
-        }
+
 	}
 } 
 ?>
