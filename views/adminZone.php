@@ -8,8 +8,7 @@
         <table id="tableBalises">
             <thead>
             <tr>
-                <th>Last name</th>
-                <th>Name</th>
+                <th>name, last-name</th>
                 <th>Email</th>
                 <th>state</th>
                 <th>role</th>
@@ -17,24 +16,25 @@
             </tr>
             </thead>
             <tbody>
-            <?php for ($i = 0; $i < count($tabmember); $i++) { ?>
-                <tr>
-                    <td><?php echo $tabmember[$i]->html_last_name()?></td>
-                    <td><?php echo $tabmember[$i]->html_name() ?></td>
-                    <td><?php echo $tabmember[$i]->html_email() ?></td>
-                    <td><?php if($tabmember[$i]->html_state() == 's'){
-                            echo $suspended;
-                        } else {
-                            echo $active;
-                        }?></td>
-                    <td><?php if($tabmember[$i]->html_is_admin() == 1){
-                            echo $admin;
-                        } else {
-                            echo $user;
-                        }?></td>
-                    <td><input type="radio" name="membre" value="<?php echo $tabmember[$i]->html_id_member(); ?>"
-                            <?php echo (isset($member) && $tabmember[$i]->html_id_member() == $member->html_id_member()) ? 'checked' : ''; ?> /></td>
-                </tr>
+                <?php foreach ($tabmember as $i => $member) {
+                $checked = (isset($selected_member) && $member->html_id_member() == $selected_member->html_id_member()) ? 'checked': '';?>
+                    <tr>
+                        <td><?php echo $member->full_name() ?></td>
+                        <td><?php echo $member->email() ?></td>
+                        <td><?php if($member->state() == 's'){
+                                echo $statesuspended;
+                            } else {
+                                echo $stateactive;
+                            }?>
+                        </td>
+                        <td><?php if($member->is_admin() == 1){
+                                echo $roleadmin;
+                            } else {
+                                echo $roleuser;
+                            }?>
+                        </td>
+                        <td><input type="radio" name="member" value="<?php echo $member->html_id_member(); ?>" <?php echo $checked; ?> /></td>
+                    </tr>
             <?php } ?>
             </tbody>
         </table>

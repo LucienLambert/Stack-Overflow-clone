@@ -45,6 +45,10 @@
         return $this->_password;
     }
 
+    public function html_id_member(){
+        return htmlspecialchars($this->_id_member);
+    }
+
     public function html_name() {
         return htmlspecialchars($this->_name);
     }

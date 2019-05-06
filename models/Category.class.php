@@ -20,8 +20,4 @@
         return htmlspecialchars($this->_name);
     }
 
-    public function html_id_category(){
-        return htmlspecialchars($this->_id_category);
-    }
-
 } ?>

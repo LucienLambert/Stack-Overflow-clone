@@ -12,14 +12,12 @@ class CategoryController{
         # Search Keyword
         $html_keyword = '';
 
-        $notification = '';
-
         # Recherche si un mot clé est entré dans le formulaire form_recherche
         if (!empty($_POST['form_research']) && !empty($_POST['keyword'])) {
-            $tabcategories = $this->_db->select_categories($_POST['keyword']);
+            $tabcategories = $this->_db->select_parcategories($_POST['keyword']);
             $html_keyword = htmlspecialchars($_POST['keyword']); # Protection anti XSS à l'affichage
         } else {
-            # Sélection de tous les livres sous forme de tableau
+            # Sélection de tous les questions sous forme de tableau
             $tabcategories = $this->_db->select_categories();
         }
 
