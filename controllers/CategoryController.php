@@ -21,7 +21,7 @@ class CategoryController{
             $tabcategories = $this->_db->select_categories();
         }
 
-        # A controller ends by writing a view
+        # A controllers ends by writing a view
         require_once(CHEMIN_VUES . 'category.php');
     }
 

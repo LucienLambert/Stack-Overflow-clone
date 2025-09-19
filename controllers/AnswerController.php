@@ -8,16 +8,12 @@ class AnswerController{
     }
 
     public function run() {
-        # Notification that will be displayed in the view
-        $notification = '';
 
 
         $member = unserialize($_SESSION['member']);
 
-        var_dump($_POST);
 
-
-        # A controller ends by writing a view
+        # A controllers ends by writing a view
         require_once(CHEMIN_VUES . 'answer.php');
     }
 

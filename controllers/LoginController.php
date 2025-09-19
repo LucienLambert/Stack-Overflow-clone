@@ -8,42 +8,37 @@ class LoginController{
     }
 
     public function run() {
-        # Si un distrait écrit ?action=login en étant déjà authentifié
+        # If a malicious user writes ?action=login already authenticated
         if (!empty($_SESSION['authentifie'])) {
-            header("Location: index.php?action=member"); # redirection HTTP vers l'action login
+            header("Location: index.php?action=member"); # HTTP redirection to member action
             die();
         }
 
-        # Variables HTML dans la vue
+        # HTML variables in the view
         $notification = '';
 
-        # L'utilisateur s'est-il bien authentifié ?
+        # Did the user authenticate himself ?
         if (empty($_POST)) {
-            # L'utilisateur doit remplir le formulaire
-            $notification = 'Authentifiez-vous';
+            # The user must complete the form
+            $notification = 'You must authenticate yourself';
         } elseif (!filter_var($_POST['login'], FILTER_VALIDATE_EMAIL)) {
-            # L'authentification n'est pas correcte
-            $notification = 'Veuillez entrer un email.';
+            # The authentication is not correct
+            $notification = 'Please enter an email.';
         } else {
             if ($this->_db->is_valid_member($_POST['login'], $_POST['password'])) {
-                # L'utilisateur est bien authentifié
-                # Une variable de session $_SESSION['authenticated'] est créée
+                # The user is authenticated
+                # A $ _SESSION ['authenticated'] session variable is created
                 $member = $this->_db->select_member($_POST['login']);
                 $_SESSION['authentifie'] = 'autorise';
                 $_SESSION['login'] = $member->full_name();
                 $_SESSION['member'] = serialize($member);
                 $_SESSION['admin'] = $member->is_admin();
                 $_SESSION['state'] = $member->state();
-                if($_SESSION['state'] == 's'){
-                    $notification = 'bye bye';
-                    header("Location: index.php?action=logout");
-                    die();
-                }
-                # Redirection HTTP pour demander la page admin
+                # HTTP redirection to request the home page
                 header("Location: index.php?action=home");
                 die();
             } else {
-                $notification = 'Vos données d\'authentification ne sont pas correctes.';
+                $notification = 'Your authentication data is not correct or you are a suspended user.';
             }
         }
 

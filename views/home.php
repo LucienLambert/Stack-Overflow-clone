@@ -3,7 +3,9 @@
         <a id="button" href="index.php?action=<?= $actionloginmember; ?>"><?= $libelleloginmember; ?></a>
         <a id="button" href="index.php?action=adminZone">Admin Zone</a>
         <a id="button" href="index.php?action=question"> Questions </a>
-        <a id="button" href="index.php?action=signup">Sign Up</a>
+        <?php if (empty($_SESSION)) { ?>
+            <a id="button" href="index.php?action=signup">Sign Up</a>
+        <?php } ?>
     </nav>
 </div>
 

@@ -5,14 +5,14 @@ class LogoutController{
 	
 	}
 		
-	public function run() {	
-		# (ré)Initialiser le tableau des variables de session
+	public function run() {
+        # (re-)initialize the table of session variables
 		$_SESSION = array();
 
-		# Détruire la session
+		# Destroy the session
 		#session_destroy();
 
-		# Ce contrôleur n'affiche pas de vue, il redirige à l'accueil
+		# his controllers does not display a view, it redirects to the home.
 		header("Location: index.php"); 
 		die();
 	}

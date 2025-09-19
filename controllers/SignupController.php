@@ -23,15 +23,15 @@ class SignupController{
             } elseif ($_POST['password'] != $_POST['cpassword']){
                 $notification = 'the two passwords are different';
             } else {
-                if ($this->_db->insert_member($_POST['name'], $_POST['last_name'], $_POST['email'], $_POST['password'], $_POST['state'], 0)) {
-                    $notification1 = 'Adding well done';
+                if ($this->_db->insert_member($_POST['name'], $_POST['last_name'], $_POST['email'], $_POST['password'])) {
+                    $notification = 'Adding well done';
                 } else {
-                    $notification1 = 'Error adding';
+                    $notification = 'Error adding';
                 }
             }
         }
 
-        # A controller ends by writing a view
+        # A controllers ends by writing a view
         require_once(CHEMIN_VUES . 'signup.php');
     }
 

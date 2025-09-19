@@ -37,18 +37,19 @@ CREATE TABLE IF NOT EXISTS `answers` (
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_question` int(11) NOT NULL,
   `id_member` int(11) NOT NULL,
-  `nb_votes` int(11) DEFAULT '0',
+  `nb_negatives_votes` int(11) DEFAULT '0',
+  `nb_positives_votes` int(11) DEFAULT '0',
   PRIMARY KEY (`id_answer`),
   KEY `id_question` (`id_question`),
   KEY `id_member` (`id_member`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `id_category` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Structure de la table `members`
@@ -65,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `members` (
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id_member`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Structure de la table `questions`
@@ -85,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `questions` (
   KEY `id_category` (`id_category`),
   KEY `owner` (`owner`),
   KEY `good_answer` (`good_answer`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Structure de la table `votes`
@@ -100,14 +101,6 @@ CREATE TABLE IF NOT EXISTS `votes` (
   KEY `id_member` (`id_member`),
   KEY `id_answer` (`id_answer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `votes`
---
-
-INSERT INTO `votes` (`id_member`, `id_answer`, `value`) VALUES
-(2, 19, '+1'),
-(2, 20, '-1');
 
 --
 -- Contraintes pour les tables déchargées

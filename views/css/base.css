@@ -174,5 +174,10 @@ label {
 #invitation{
     color:grey;
 }
-
+#nb_pos_votes{
+    color:green;
+}
+#nb_neg_votes{
+    color:red;
+}
 

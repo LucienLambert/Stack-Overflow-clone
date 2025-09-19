@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="59ca8de9-1991-4987-9d9a-2c429277f93e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/groupe14.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/create_database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/config/create_database.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/config/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/AnswerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AnswerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/CategoryController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/ListemembreController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/LogoutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/LogoutController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/MemberController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/MemberController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/QuestionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/SignupController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/SignupController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/VoteController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Answer.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Answer.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Db.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Db.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Member.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Member.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Question.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Question.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/secured/.htpasswd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin.update.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin.update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/adminZone.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/adminZone.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/answer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/answer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/category.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/views/css/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/member.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/member.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/member.update.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/member.update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/question.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/question.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/vote.php" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.3" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
+  </component>
+  <component name="ProjectId" id="1iYm0tuAAT5R4NkAQdwOlOXKJ5p" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="59ca8de9-1991-4987-9d9a-2c429277f93e" name="Default Changelist" comment="" />
+      <created>1557820103219</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1557820103219</updated>
+      <workItem from="1557820104578" duration="15445000" />
+      <workItem from="1557838773570" duration="706000" />
+      <workItem from="1557847018869" duration="6000" />
+      <workItem from="1557847807754" duration="425000" />
+      <workItem from="1558022119293" duration="8217000" />
+      <workItem from="1558042053871" duration="1897000" />
+      <workItem from="1558362872022" duration="6000" />
+      <workItem from="1602092681185" duration="2037000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

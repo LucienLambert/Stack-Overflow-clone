@@ -9,109 +9,126 @@ class MemberController{
 
     public function run() {
 
-        # Si un petit fûté écrit ?action=admin sans passer par l'action login
+        # If a malicious user writes ?action=login already authenticated
         if (empty($_SESSION['authentifie'])) {
-            header("Location: index.php?action=login"); # redirection HTTP vers l'action login
+            header("Location: index.php?action=login"); # HTTP redirection to login action
             die();
         }
-        # Arrivé ici l'authentification est valide... continuons...
+
+       # Arrived here the authentication is valid ... continue ...
 
         $member = unserialize($_SESSION['member']);
 
-        # Variable HTML pour la vue
+        # HTML variables for the view
         $html_pseudo = htmlspecialchars($_SESSION['login']);
-        $notification = '';
-        $vueupdate = false; # La vue partielle de mise à jour n'est pas à afficher;
-        $vueanswers = false;
+        $bad_notif = '';
+        $good_notif = '';
+        $viewupdate = false; # The partial update view is not to be displayed;
+        $viewanswers = false;
         $selected_question = null;
+        $tabquestions = array();
 
-        # Insertion des données d'un livre en provenance du formulaire form_ajout
+
+
+        # Inserting data from a question from the form form_add_question
         if (!empty($_POST['form_add_question'])) {
             if (empty($_POST['title']) && empty($_POST['subject'])) {
-                $notification = 'Please enter a title and a subject';
+                $bad_notif = 'Please enter a title and a subject';
             } elseif (empty($_POST['title'])) {
-                $notification = 'Please enter a title';
+                $bad_notif = 'Please enter a title';
             } elseif (empty($_POST['subject'])) {
-                $notification = 'Please enter a subject';
+                $bad_notif = 'Please enter a subject';
             } else {
                 if ($this->_db->insert_question($_POST['title'], $_POST['subject'], $_POST['id_category'], $member->id_member(), 'O')) {
-                    $notification = 'Question added with success';
+                    $good_notif = 'Question has been added';
                 } else {
-                    $notification = 'Error adding question';
+                    $bad_notif = 'Error adding question';
                 }
             }
         }
-        # Gestion du tableau d'administration des questions
+
+        # Management of the questions board
         if (!empty($_POST['form_save'])) {
-            # ----------------------------------------
-            # Une question sélectionnée est à mettre à jour
-            # ----------------------------------------
             if (!empty($_POST['title']) && !empty($_POST['subject'])) {
                 $this->_db->update_question($_POST['idquestion'], $_POST['title'], $_POST['subject']);
-                $notification = 'Question updated successfully';
-                $vueupdate = false;
+                $good_notif = 'Question has been updated';
+                $viewupdate = false;
             } else {
-                $notification = 'Please enter a title and a subject';
+                $bad_notif = 'Please enter a title and a subject';
                 $selected_question = $this->_db->select_question($_POST['idquestion']);
-                $vueupdate = true;
+                $viewupdate = true;
             }
         }
         elseif (!empty($_POST['form_update'])) {
-            if (!empty($_POST['question'])) {
-                # --------------------------------------------------------------------------
-                # Une seule question est à mettre à jour spécifié par la variable $_POST['question']
-                # --------------------------------------------------------------------------
-                # Sélectionner les informations de la question correspondante
-                $vueanswers = false;
-                $selected_question = $this->_db->select_question($_POST['question']);
-                $vueupdate = true; # La vue partielle de mise à jour est à afficher;
-            } else {
-                $notification = 'No question to update';
-            }
-        } elseif(!empty($_POST['form_see_answers'])) {
-            if (!empty($_POST['idquestion'])) {
-                $vueupdate = false;
-                $selected_question = $this->_db->select_question($_POST['idquestion']);
-                $tabanswers  = $this->_db->select_answers($_POST['idquestion']);
-                $vueanswers = true;
-            } else {
-                $notification = 'No question to see';
-            }
-        } elseif (!empty($_POST['form_add_answer'])) {
-            if (!empty($_POST['subject'])) {
-                $vueupdate = false;
-                $selected_question = $this->_db->select_question($_POST['idquestion']);
-                $tabanswers  = $this->_db->select_answers($_POST['idquestion']);
-                if ($this->_db->insert_answer($_POST['subject'], $_POST['idquestion'], $member->id_member())) {
-                    $notification = 'answer added with success';
+            foreach ($_POST['form_update'] as $id_question => $action) {
+                $selected_question = $this->_db->select_question($id_question);
+                if ($selected_question->owner()->id_member() != $member->id_member() || $selected_question->state() == 'D') {
+                    $bad_notif = 'Sorry you can\'t change this question because it not yours or it has been duplicated by the admin';
                 } else {
-                    $notification = 'Error adding answer';
+                    $viewupdate = true;
                 }
-                $vueanswers = true;
             }
-        } elseif (!empty($_POST['vote'])) {// s'il a voté
-            $vueupdate = false;
-            $this->_db->insert_vote($member->id_member(), $_POST['idanswer'], $_POST['vote']);
-            $this->_db->update_answer($_POST['nb_votes'], $_POST['vote'], $_POST['idanswer']);
-            $selected_question = $this->_db->select_question($_POST['idquestion']);
-            $tabanswers  = $this->_db->select_answers($_POST['idquestion']);
-            $vueanswers = true;
-            $notification = 'thank you for your vote';
 
-        } elseif (!empty($_POST['form_change_state'])) {
-            $this->_db->update_state_question($_POST['state'], $_POST['idquestion']);
+        } elseif(!empty($_POST['form_see_answers'])) {
+            foreach($_POST['form_see_answers']   as  $id_question => $action){
+                $selected_question = $this->_db->select_question($id_question);
+                $tabanswers = $this->_db->select_answers($id_question);
+                $viewanswers = true;
+            }
+
+        }elseif (!empty($_POST['form_update_good_answer'])){
+            if (!empty($_POST['idanswer']) && !empty($_POST['idquestion'])) {
+                $selected_question = $this->_db->select_question($_POST['idquestion']);
+                if ($selected_question->owner()->id_member() == $member->id_member() && $selected_question->state() != 'D') {
+                    $this->_db->update_good_answer($_POST['idquestion'], $_POST['idanswer']);
+                    $good_notif = 'you\'ve chosen the right answer, your question is mark as solved';
+                } else {
+                    $bad_notif = 'Sorry this action is left to the owner of the question and it can also be a duplicated question';
+                }
+            }
+        }elseif (!empty($_POST['form_add_answer'])) {
+            if (!empty($_POST['subject'])) {
+                $selected_question = $this->_db->select_question($_POST['idquestion']);
+                if($selected_question->state()== 'D'){
+                    $bad_notif=' Sorry, cannot add answer to duplicated question';
+                }else {
+                    $viewupdate = false;
+                    $selected_question = $this->_db->select_question($_POST['idquestion']);
+                    if ($this->_db->insert_answer($_POST['subject'], $_POST['idquestion'], $member->id_member())) {
+                        $good_notif = 'Answer has been added';
+                    } else {
+                        $notification = 'Error adding answer';
+                    }
+                    $tabanswers = $this->_db->select_answers($_POST['idquestion']);
+                    $viewanswers = true;
+                }
+            }
+        } elseif (!empty($_POST['vote'])) {// if the member has voted
+            try {
+                $viewupdate = false;
+                $this->_db->insert_vote($member->id_member(), $_POST['idanswer'], $_POST['vote']);
+                $this->_db->update_answer($_POST['nb_positives_votes'], $_POST['nb_negatives_votes'], $_POST['vote'], $_POST['idanswer']);
+                $selected_question = $this->_db->select_question($_POST['idquestion']);
+                $tabanswers = $this->_db->select_answers($_POST['idquestion']);
+                $viewanswers = true;
+                $good_notif = 'Thank\'s for your vote :)';
+
+            } catch (PDOException $e) {
+                $bad_notif = 'Sorry you\'ve already vote for this answer or this question has been duplicated';
+            }
+
         }
 
-        # Sélection de toutes les questions à afficher
+        #Select all questions to display
         $tabquestions = $this->_db->select_questions();
-        # Sélection de toutes les catégories à afficher
+        # Select all categories to display
         $tabCategories = $this->_db->select_categories();
 
-        # Ecrire ici la vue
+        # A controllers ends by writing a view
         require_once(CHEMIN_VUES . 'member.php');
-        if ($vueupdate) {
+        if ($viewupdate) {
             require_once(CHEMIN_VUES . 'member.update.php');
-        } elseif ($vueanswers) {
+        } elseif ($viewanswers) {
             require_once(CHEMIN_VUES . 'answer.php');
         }
     }

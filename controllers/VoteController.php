@@ -10,7 +10,7 @@ class VoteController{
 
     public function run(){
 
-        # A controller ends by writing a view
+        # A controllers ends by writing a view
         require_once(CHEMIN_VUES . 'vote.php');
     }
 
